@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import './assets/style.css';
 import './assets/normalize.css';
+import './DOM';
 
 //Undefined variables for weather data that will be given a value once the weather data is fetched
 let location, temp, feelsTemp, weatherCondition, humidity, precip, wind, windDirection, country, city, localTime;
@@ -45,8 +46,8 @@ async function getWeatherData(location) {
             localTime: `Local time: ${localTime}`,
         };
 
-        if (location == undefined || location == null) {
-            throw new Error ("Wrong or invalid location");
+        if (location == undefined) {
+            throw new Error ("Invalid location or location does not exist");
         }
         
         console.log(location);
@@ -56,6 +57,7 @@ async function getWeatherData(location) {
     
     catch (error) {
         console.error("Wrong or invalid location!");
+        //Add event listeners that executes the function which will make a modal appear when an error is caught
     }
 }
 
