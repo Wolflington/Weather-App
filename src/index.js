@@ -15,31 +15,32 @@ export default async function getWeatherData(location) {
         }
 
         const weatherData = await response.json(); //Extracts the data using json method
-        const extractedData = extractData(weatherData)
 
-        // //Set the data to undefined variables
-        // const { //Destructuring assignment allows to access the properties and assign them to their respective variables
-        //     temp_c: temp,
-        //     feelslike_c: feelsTemp,
-        //     condition: {text: weatherCondition},
-        //     humidity: humidity,
-        //     precip_mm: precip,
-        //     wind_kph: wind,
-        //     wind_dir: windDirection,
-        // } = weatherData.current
+        //Set the data to undefined variables
+        const { //Destructuring assignment allows to access the properties and assign them to their respective variables
+            temp_c: temp,
+            feelslike_c: feelsTemp,
+            condition: {text: weatherCondition},
+            humidity: humidity,
+            precip_mm: precip,
+            wind_kph: wind,
+            wind_dir: windDirection,
+        } = weatherData.current
 
-        // const { //Destructuring assignment allows to access the properties and assign them to their respective variables
-        //     country: country,
-        //     name: city,
-        //     localtime: localTime,
-        // } = weatherData.location
+        const { //Destructuring assignment allows to access the properties and assign them to their respective variables
+            country: country,
+            name: city,
+            localtime: localTime,
+        } = weatherData.location
+
+        displayInfo(temp, feelsTemp, weatherCondition, humidity, precip, wind, windDirection, country, city, localTime);
 
         if (location == undefined) {
             throw new Error ("Invalid location or location does not exist");
         }
         
-        console.log(location);
         console.log(weatherData);
+        return weatherData;
     } 
     
     catch (error) {
@@ -48,19 +49,27 @@ export default async function getWeatherData(location) {
     }
 }
 
-function extractData(weatherData) {
-    return {
-        temp: weatherData.current.temp_c,
-        feelsTemp: weatherData.current.feelslike_c,
-        weatherCondition: weatherData.current.condition.text,
-        humidity: weatherData.current.humidity,
-        precip: weatherData.current.precip_mm,
-        wind: weatherData.current.wind_kph,
-        windDirection: weatherData.current.wind_dir,
-        country: weatherData.location.country,
-        city: weatherData.location.name,
-        localTime: weatherData.location.localtime
-    }
+function displayInfo(
+    temp, 
+    feelsTemp, 
+    weatherCondition, 
+    humidity, 
+    precip, 
+    wind, 
+    windDirection, 
+    country, 
+    city, 
+    localTime) {
+        console.log(`${temp} from displayInfo`);
+        console.log(`${feelsTemp} from displayInfo`);
+        console.log(`${weatherCondition} from displayInfo`);
+        console.log(`${humidity} from displayInfo`);
+        console.log(`${precip} from displayInfo`);
+        console.log(`${wind} from displayInfo`);
+        console.log(`${windDirection} from displayInfo`);
+        console.log(`${country} from displayInfo`);
+        console.log(`${city} from displayInfo`);
+        console.log(`${localTime} from displayInfo`);
 }
 
 //Event listener for searching city or country
