@@ -10,7 +10,7 @@ export function displayInfo(
     city, 
     localTime,
     willItRain) {
-        const mainInfo = document.querySelector(".main-weather-info");
+        const mainInfo = document.querySelector(".weather-info");
         mainInfo.textContent = "";
         mainInfo.append(`Temperature: ${temp}`);
         console.log(`${feelsTemp} from displayInfo`);
