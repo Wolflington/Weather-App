@@ -14,24 +14,30 @@
 }
 
 body {
-    min-height: 100vh;
-    min-width: 100vw;
-    background-image: url(./sunny.jpg);
+    background-image: linear-gradient(rgba(39, 39, 39, 0.377), rgba(77, 77, 77, 0.308)), url(./sunny.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    color: #fefefe;
 }
 
 main {
+    min-height: 100vh;
+    min-width: 100vw;
     display: flex;
-    height: 100%;
+    gap: 50rem;
 }
 
+section.main-weather-info{
+    margin-left: 75px;
 
-input[type="search"] {
-    width: 15rem;
-    border: 2px solid black;
-    border-radius: 5px;
-    padding: 4px;
-    margin: 15px 0;
+
+    input[type="search"] {
+        width: 20rem;
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin: 30px 0;
+    }
 }
+
