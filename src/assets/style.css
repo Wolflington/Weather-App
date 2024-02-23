@@ -14,23 +14,23 @@
 }
 
 body {
-    background-image: linear-gradient(rgba(39, 39, 39, 0.377), rgba(77, 77, 77, 0.308)), url(./sunny.jpg);
+    min-height: 100vh;
+    min-width: 100vw;
+    background-image: linear-gradient(rgba(105, 105, 105, 0.377), rgba(109, 109, 109, 0.308)), url(./sunny\(2\).jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     color: #fefefe;
+    font-family: 'Roboto', sans-serif;
 }
 
 main {
-    min-height: 100vh;
-    min-width: 100vw;
     display: flex;
-    gap: 50rem;
+    justify-content: space-between;
 }
 
 section.main-weather-info{
-    margin-left: 75px;
-
+    margin-left: 75px;    
 
     input[type="search"] {
         width: 20rem;
@@ -38,6 +38,33 @@ section.main-weather-info{
         border-radius: 5px;
         padding: 5px 10px;
         margin: 30px 0;
+    }
+
+    > .weather-info {
+        position: absolute;
+        top: 20%;
+        transform: (0, -20%);
+
+        h2 {
+            font-size: 1.8rem;
+        }
+
+        h1 {
+            margin: 0;
+            display: inline-block;
+            font-size: 5rem;
+        }
+
+        div {
+            display: flex;
+            gap: 10px;
+            font-size: 1.8rem;
+
+            .time {
+                border-left: 3px solid #fefefe;
+                padding-left: 8px;
+            }
+        }
     }
 }
 
