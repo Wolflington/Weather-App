@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import './assets/normalize.css';
 import './assets/style.css';
-import { displayInfo } from './DOM';
+import { displayInfo, displayHourly } from './DOM';
 
 //Undefined variables for weather data that will be given a value once the weather data is fetched
-let location, temp, feelsTemp, weatherCondition, humidity, precip, wind, windDirection, country, city, localTime, willItRain;
+let location, temp, feelsTemp, weatherCondition, humidity, precip, country, city, localTime, willItRain, weatherIcon, hourlyTemp;
 
 export default async function getWeatherData(location) {
     try {
@@ -13,28 +13,43 @@ export default async function getWeatherData(location) {
             throw new Error (`Failed to fetch data.`);
         }
         const weatherData = await response.json(); //Extracts the data using json method
+        
         //Set the data to undefined variables
-        const { //Destructuring assignment allows to access the properties and assign them to their respective variables
+        //Destructuring assignment allows to access the properties and assign them to their respective variables
+        const { //Get the main info
             temp_c: temp,
             feelslike_c: feelsTemp,
             condition: {text: weatherCondition},
             humidity: humidity,
             precip_mm: precip,
-            wind_kph: wind,
-            wind_dir: windDirection,
         } = weatherData.current
-        const {
+
+        const { //Access the location
             country: country,
             name: city,
             localtime: localTime,
         } = weatherData.location
-        const {
+
+        const { //Access the chance of raining for the day
             daily_chance_of_rain: willItRain
         } = weatherData.forecast.forecastday[0].day
-        displayInfo(temp, feelsTemp, weatherCondition, humidity, precip, wind, windDirection, country, city, localTime, willItRain);
+
+        // Loop through the array to access every indeces
+        let i = 0;
+        const hourlyData = weatherData.forecast.forecastday[0].hour;
+        for (i = 0; i < hourlyData.length; i++) {
+            const { //Access the icon and temp every hour
+                temp_c: hourlyTemp,
+                condition: {icon: weatherIcon},
+            } = hourlyData[i]
+            displayHourly(hourlyTemp, weatherIcon);
+        }
+
+        displayInfo(temp, feelsTemp, weatherCondition, humidity, precip, country, city, localTime);
         if (location == undefined) {
             throw new Error ("Invalid location or location does not exist");
         }
+        console.log(location);
         console.log(weatherData);
         return weatherData;
     } 
