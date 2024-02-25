@@ -4,7 +4,7 @@ import './assets/style.css';
 import { displayInfo, displayHourly } from './DOM';
 
 //Undefined variables for weather data that will be given a value once the weather data is fetched
-let location, temp, feelsTemp, weatherCondition, humidity, precip, country, city, localTime, willItRain, weatherIcon, hourlyTemp;
+let location, temp, feelsTemp, weatherCondition, humidity, precip, country, city, localTime, willItRain, weatherIcon, hourlyTemp, hour;
 
 export default async function getWeatherData(location) {
     try {
@@ -21,13 +21,13 @@ export default async function getWeatherData(location) {
             feelslike_c: feelsTemp,
             condition: {text: weatherCondition},
             humidity: humidity,
-            precip_mm: precip,
+            precip_mm: precip
         } = weatherData.current
 
         const { //Access the location
             country: country,
             name: city,
-            localtime: localTime,
+            localtime: localTime
         } = weatherData.location
 
         const { //Access the chance of raining for the day
@@ -41,8 +41,9 @@ export default async function getWeatherData(location) {
             const { //Access the icon and temp every hour
                 temp_c: hourlyTemp,
                 condition: {icon: weatherIcon},
+                time: hour,
             } = hourlyData[i]
-            displayHourly(hourlyTemp, weatherIcon);
+            displayHourly(hourlyTemp, weatherIcon, hour);
         }
 
         displayInfo(temp, feelsTemp, weatherCondition, humidity, precip, country, city, localTime);

@@ -42,10 +42,17 @@ export function displayInfo(
 
 export function displayHourly(
     hourlyTemp,
-    weatherIcon
+    weatherIcon,
+    hour
 ) {
     const hourlyForecast = document.querySelector(".hourly-forecast");
     const hourlyContainer = document.createElement("div");
+
+    //Displays time (hour)
+    const hourTime = document.createElement("p");
+    const formatHour = format(new Date(hour), "HH");
+    hourTime.append(formatHour);
+    hourlyContainer.append(hourTime);
 
     //Displays weather icon
     const icon = document.createElement("img");
