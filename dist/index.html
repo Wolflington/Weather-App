@@ -7,18 +7,25 @@
     </head>
     <body>
         <main>
-            <section>
+            <section class = "main-weather-info">
                 <form id = "search-form" >
-                    <input type = "search" name = "search" id = "search" placeholder = "Country or city..."/>
+                    <input type = "search" name = "search" id = "search"/>
                 </form>
-
-                <div class = "main-weather-info"></div>
+                <div class = "weather-info"></div>
             </section>
 
-            <section>
+            <section class = "other-info">
+                <div>
+                    <span class = "left">&lsaquo;</span>
+                    <button class = "dot active"></button>
+                    <button class = "dot"></button>
+                    <button class = "dot"></button>
+                    <button class = "dot"></button>
+                    <span class = "right">&rsaquo;</span>
+                </div>
                 <div class = "hourly-forecast"></div>
-                <div class = "additional-info"></div>
             </section>
+
         </main>
         <script src = "main.js"></script>
     </body>
