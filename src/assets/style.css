@@ -16,7 +16,7 @@
 body {
     min-height: 100vh;
     min-width: 100vw;
-    background-image: linear-gradient(rgba(105, 105, 105, 0.377), rgba(109, 109, 109, 0.308)), url(./sunny\(2\).jpg);
+    background-image: linear-gradient(rgba(71, 71, 71, 0.377), rgba(73, 73, 73, 0.363)), url(./sunny\(1\).jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -25,12 +25,10 @@ body {
 }
 
 main {
-    display: flex;
-    justify-content: space-between;
+    padding: 0 75px;
 }
 
 section.main-weather-info{
-    margin-left: 75px;    
 
     input[type="search"] {
         width: 20rem;
@@ -45,8 +43,12 @@ section.main-weather-info{
         top: 20%;
         transform: (0, -20%);
 
-        h2 {
-            font-size: 1.8rem;
+        .condition {
+            font-size: 1.6rem;
+        }
+
+        .place {
+            font-size: 2.2rem;
         }
 
         h1 {
@@ -55,16 +57,64 @@ section.main-weather-info{
             font-size: 5rem;
         }
 
-        div {
-            display: flex;
-            gap: 10px;
-            font-size: 1.8rem;
-
-            .time {
-                border-left: 3px solid #fefefe;
-                padding-left: 8px;
-            }
+        h3 {
+            font-size: 1.6rem;
         }
     }
 }
 
+section.other-info {
+    margin-top: 28rem;
+    overflow-x: hidden;
+
+    > div {
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        height: 40px;
+        gap: 5px;
+
+        button.dot {            
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            position: relative;
+            top: 10%;
+            margin: 0 3px;
+            background-color: transparent;
+            border: 2px solid #fefefe;
+            cursor: pointer;
+        }
+
+        button.dot:hover {
+            background-color: #666666;
+        }
+
+        button.active {
+            background-color: #000000;
+        }
+
+        span {
+            font-size: 3.3rem;
+            cursor: pointer;
+        }
+    }
+
+    > .hourly-forecast {
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        gap: 6rem;
+        font-weight: 900;
+        transition: ease 0.5s;
+
+        > .hourly-container {
+            flex: 200px 0 0;
+
+            img {
+                margin: 10px 0;
+            }
+        }
+    }
+}
