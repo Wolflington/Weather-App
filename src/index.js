@@ -67,3 +67,8 @@ searchForCity.addEventListener("submit", (event) => {
     const location = document.getElementById("search").value;
     getWeatherData(location);
 });
+
+//Displays a default location upon opening the app
+(function initializeWebsite() {
+    getWeatherData("Manila");
+})();
