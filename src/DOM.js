@@ -47,6 +47,7 @@ export function displayHourly(
 ) {
     const hourlyForecast = document.querySelector(".hourly-forecast");
     const hourlyContainer = document.createElement("div");
+    hourlyContainer.classList.add("hourly-container");
 
     //Displays time (hour)
     const hourTime = document.createElement("p");
@@ -66,3 +67,38 @@ export function displayHourly(
     
     hourlyForecast.append(hourlyContainer);
 }
+
+//Initialize a variable that gets the element of wrapper
+const hourlyWrapper = document.querySelector(".hourly-forecast");
+//Access the dots
+let dots = document.querySelectorAll(".dot");
+//Set a variable to zero to initialize array index (which is 0)
+let activeDot = 0;
+
+//FOR EACH dots, pass two parameters: dot and index
+dots.forEach((dot, index) => {
+    //SET ATTRIBUTE to each dot and pass index parameter to the dots
+    dot.setAttribute("data-index", index);
+    //Add click event listener to dot, and pass "event" parameter
+    dot.addEventListener("click", (event) => {
+        //Create variable clickedDot that pass the event parameter to targeted dataset attribute
+        let clickedDot = event.currentTarget.dataset.index;
+        //IF the clicked dot is the same as active dot, do nothing
+        if (clickedDot === activeDot) {
+            return;
+        }
+        //ELSE change the clickedDot to activeDot
+        else {
+            //Initialize variable additionalInfo to get the element of wrapper and its width
+            let displayArea = hourlyWrapper.parentElement.clientWidth;
+            //Initialize variable pixels to calculate the area of pixels
+            let pixels = -displayArea * clickedDot;
+            //Apply style to wrapper to transform the wrapper
+            hourlyWrapper.style.transform = 'translateX('+ pixels + 'px)';
+            //Set the active dot to clicked dot variable
+            dots[activeDot].classList.remove("active");
+            dots[clickedDot].classList.add("active");
+            activeDot = clickedDot;
+        }
+    });
+});
