@@ -48,11 +48,30 @@ section.main-weather-info {
             outline: none;
         }
 
+        [type="search"].no-cancel-button::-webkit-search-cancel-button {
+            appearance: none;
+        }
+          
+        [type="search"].no-decoration::-webkit-search-decoration {
+        appearance: none;
+        }
+        
+        [type="search"].no-decoration-no-cancel-button::-webkit-search-decoration,
+        [type="search"].no-decoration-no-cancel-button::-webkit-search-cancel-button {
+        appearance: none;
+        }
+        
+        [type="search"].as-textfield {
+        appearance: textfield;
+        outline-offset: -2px;
+        }
+
         img {
             display: inline-block;
-            vertical-align: sub;
+            vertical-align: middle;
+            cursor: pointer;
             position: relative;
-            right: 30px;
+            right: 35px;
         }
     }
 
