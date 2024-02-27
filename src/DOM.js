@@ -43,6 +43,7 @@ export function displayInfo(
         mainInfo.append(dateAndTime);
 
         const additionalInfo = document.querySelector(".additional-info");
+        additionalInfo.innerHTML = "";
 
         //Displays feels like temperature
         const feelsLikeContainer = document.createElement("div");
@@ -114,6 +115,11 @@ export function displayHourly(
     hourlyContainer.append(hourlyTemperature);  
     
     hourlyForecast.append(hourlyContainer);
+}
+
+export function clearHourlyData() {
+    const hourlyForecast = document.querySelector(".hourly-forecast");
+    hourlyForecast.innerHTML = "";
 }
 
 (function changeSlide() {

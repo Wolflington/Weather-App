@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import './assets/normalize.css';
 import './assets/style.css';
-import { displayInfo, displayHourly } from './DOM';
+import { displayInfo, displayHourly, clearHourlyData } from './DOM';
 
 //Undefined variables for weather data that will be given a value once the weather data is fetched
 let location, temp, feelsTemp, weatherCondition, humidity, country, city, localTime, willItRain, weatherIcon, hourlyTemp, hour;
@@ -36,6 +36,7 @@ export default async function getWeatherData(location) {
         // Loop through the array to access every indeces
         let i = 0;
         const hourlyData = weatherData.forecast.forecastday[0].hour;
+        clearHourlyData();
         for (i = 0; i < hourlyData.length; i++) {
             const { //Access the icon and temp every hour
                 temp_c: hourlyTemp,
@@ -49,8 +50,7 @@ export default async function getWeatherData(location) {
         if (location == undefined) {
             throw new Error ("Invalid location or location does not exist");
         }
-        console.log(location);
-        console.log(weatherData);
+
         return weatherData;
     } 
     catch (error) {
