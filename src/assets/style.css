@@ -25,22 +25,22 @@ body {
 }
 
 main {
-    padding: 0 75px;
+    padding: 0 125px;
 }
 
 section.main-weather-info {
     display: flex;
+    justify-content: space-between;
 
     form {
-        display: flex;
-        align-items: center;
+
+        margin-top: 45px;
 
         input[type="search"] {
             width: 20rem;
             border: 2px solid #9b9b9b;
             border-radius: 5px;
             padding: 5px 10px;
-            margin: 20px 0;
             background-color: #fefefe9d;
         }
     
@@ -49,15 +49,17 @@ section.main-weather-info {
         }
 
         img {
+            display: inline-block;
+            vertical-align: sub;
             position: relative;
-            right: 26px;
+            right: 30px;
         }
     }
 
     > .weather-info {
         position: absolute;
-        top: 10%;
-        transform: (0, -10%);
+        top: 20%;
+        transform: (0, -20%);
 
         .condition {
             font-size: 1.6rem;
@@ -77,10 +79,23 @@ section.main-weather-info {
             font-size: 1.6rem;
         }
     }
+
+    > .additional-info {
+        margin-top: 75px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        > div {
+            display: flex;
+            gap: 15px;
+        }
+        
+    }
 }
 
 section.hourly {
-    margin-top: 30rem;
+    margin-top: 15rem;
     overflow-x: hidden;
 
     > div {
@@ -121,7 +136,7 @@ section.hourly {
         height: 100%;
         width: 100%;
         display: flex;
-        gap: 6rem;
+        gap: 5rem;
         font-weight: 900;
         font-size: 1.5rem;
         transition: ease 0.7s;
