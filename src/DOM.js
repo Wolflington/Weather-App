@@ -12,7 +12,6 @@ export function displayInfo(
     feelsTemp, 
     weatherCondition,
     humidity, 
-    precip, 
     country, 
     city, 
     localTime,
@@ -124,6 +123,38 @@ export function displayHourly(
     let dots = document.querySelectorAll(".dot");
     let activeDot = 0;
 
+    //Event listeners to change slides
+    prevBtn.addEventListener("click", () => {
+        if (activeDot === 0) { //If activeDot is on the first slide, then loop back to the last slide
+            activeDot = dots.length - 1;
+        } else {
+            activeDot--;
+        }
+        changeSlideTo(activeDot);
+    })
+
+    nextBtn.addEventListener("click", () => {
+        if (activeDot === dots.length - 1) { //If activeDot is on the last slide, then loop back to the first slide
+            activeDot = 0;
+        } else {
+            activeDot++;
+        }
+        changeSlideTo(activeDot);
+    });
+
+    function changeSlideTo(index) {
+        //Get the parent element and its width
+        let displayArea = hourlyWrapper.parentElement.clientWidth;
+        //Calculate the area of pixels
+        let pixels = -displayArea * index;
+        //Apply style to wrapper to transform the wrapper
+        hourlyWrapper.style.transform = 'translateX('+ pixels + 'px)';
+        //Toggles active class
+        dots.forEach(dot => dot.classList.remove("active"));
+        dots[index].classList.add("active");
+        activeDot = index;
+    }
+
     for (let index = 0; index < dots.length; index++) {
             let dot = dots[index];
             dot.setAttribute("data-index", index);
@@ -134,16 +165,7 @@ export function displayHourly(
                 return;
             }
             else {
-                //Get the parent element and its width
-                let displayArea = hourlyWrapper.parentElement.clientWidth;
-                //Calculate the area of pixels
-                let pixels = -displayArea * clickedDot;
-                //Apply style to wrapper to transform the wrapper
-                hourlyWrapper.style.transform = 'translateX('+ pixels + 'px)';
-                //Toggles active class
-                dots[activeDot].classList.remove("active");
-                dots[clickedDot].classList.add("active");
-                activeDot = clickedDot;
+                changeSlideTo(clickedDot);
             }
         });
     }
