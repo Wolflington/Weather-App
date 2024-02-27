@@ -4,7 +4,7 @@ import './assets/style.css';
 import { displayInfo, displayHourly } from './DOM';
 
 //Undefined variables for weather data that will be given a value once the weather data is fetched
-let location, temp, feelsTemp, weatherCondition, humidity, precip, country, city, localTime, willItRain, weatherIcon, hourlyTemp, hour;
+let location, temp, feelsTemp, weatherCondition, humidity, country, city, localTime, willItRain, weatherIcon, hourlyTemp, hour;
 
 export default async function getWeatherData(location) {
     try {
@@ -21,7 +21,6 @@ export default async function getWeatherData(location) {
             feelslike_c: feelsTemp,
             condition: {text: weatherCondition},
             humidity: humidity,
-            precip_mm: precip
         } = weatherData.current
 
         const { //Access the location
@@ -46,7 +45,7 @@ export default async function getWeatherData(location) {
             displayHourly(hourlyTemp, weatherIcon, hour);
         }
 
-        displayInfo(temp, feelsTemp, weatherCondition, humidity, precip, country, city, localTime);
+        displayInfo(temp, feelsTemp, weatherCondition, humidity, country, city, localTime, willItRain);
         if (location == undefined) {
             throw new Error ("Invalid location or location does not exist");
         }
