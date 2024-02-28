@@ -3,9 +3,7 @@ import searchImg from './assets/search-icon.png';
 import feelsLikeIcon from './assets/thermometer.png';
 import rainIcon from './assets/rain.png';
 import humidityIcon from './assets/humidity.png';
-
-const searchIcon = document.getElementById("search-icon");
-searchIcon.setAttribute("src", searchImg);
+import getWeatherData from './index';
 
 export function displayInfo(
     temp, 
@@ -176,3 +174,20 @@ export function clearHourlyData() {
         });
     }
 })();
+
+//Event listener for searching city or country
+const searchForCity = document.getElementById("search-form");
+searchForCity.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const location = document.getElementById("search").value;
+    getWeatherData(location);
+});
+
+const searchIcon = document.getElementById("search-icon");
+searchIcon.setAttribute("src", searchImg);
+searchIcon.addEventListener("click", (event) => {
+    console.log("I am clicked!");
+    event.preventDefault();
+    const location = document.getElementById("search").value;
+    getWeatherData(location);
+});

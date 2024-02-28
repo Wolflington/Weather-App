@@ -8,12 +8,12 @@ let location, temp, feelsTemp, weatherCondition, humidity, country, city, localT
 
 export default async function getWeatherData(location) {
     try {
-        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=fb4d08953c954f34a8031133240602&q=${location}`, {mode: "cors"}); //Gets the weather data from Weather API
-        if (!response.ok) {
+        const weatherResponse = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=fb4d08953c954f34a8031133240602&q=${location}`, {mode: "cors"}); //Gets the weather data from Weather API
+        if (!weatherResponse.ok) {
             throw new Error (`Failed to fetch data.`);
         }
-        const weatherData = await response.json(); //Extracts the data using json method
-        
+        const weatherData = await weatherResponse.json(); //Extracts the data using json method
+
         //Set the data to undefined variables
         //Destructuring assignment allows to access the properties and assign them to their respective variables
         const { //Get the main info
@@ -51,6 +51,7 @@ export default async function getWeatherData(location) {
             throw new Error ("Invalid location or location does not exist");
         }
 
+        console.log(weatherData);
         return weatherData;
     } 
     catch (error) {
@@ -58,14 +59,6 @@ export default async function getWeatherData(location) {
         //Add event listeners that executes the function which will make a modal appear when an error is caught
     }
 }
-
-//Event listener for searching city or country
-const searchForCity = document.getElementById("search-form");
-searchForCity.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const location = document.getElementById("search").value;
-    getWeatherData(location);
-});
 
 //Displays a default location upon opening the app
 (function initializeWebsite() {
