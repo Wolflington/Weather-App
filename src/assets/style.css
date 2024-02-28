@@ -22,63 +22,49 @@ body {
     background-size: cover;
     color: #fefefe;
     font-family: 'Roboto', sans-serif;
+    overflow: hidden;
 }
 
 main {
     padding: 0 125px;
 }
 
+form {
+    margin-top: 45px;
+
+    input[type="search"] {
+        width: 20rem;
+        border: 2px solid #9b9b9b;
+        border-radius: 5px;
+        padding: 5px 10px;
+        background-color: #fefefe9d;
+    }
+
+    input[type="search"]:focus {
+        outline: none;
+    }
+    
+    [type="search"]::-webkit-search-cancel-button,
+    [type="search"]::-webkit-search-decoration {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    > img {
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+        position: relative;
+        right: 35px;
+    }
+}
+
 section.main-weather-info {
     display: flex;
     justify-content: space-between;
-
-    form {
-
-        margin-top: 45px;
-
-        input[type="search"] {
-            width: 20rem;
-            border: 2px solid #9b9b9b;
-            border-radius: 5px;
-            padding: 5px 10px;
-            background-color: #fefefe9d;
-        }
-    
-        input[type="search"]:focus {
-            outline: none;
-        }
-
-        [type="search"].no-cancel-button::-webkit-search-cancel-button {
-            appearance: none;
-        }
-          
-        [type="search"].no-decoration::-webkit-search-decoration {
-        appearance: none;
-        }
-        
-        [type="search"].no-decoration-no-cancel-button::-webkit-search-decoration,
-        [type="search"].no-decoration-no-cancel-button::-webkit-search-cancel-button {
-        appearance: none;
-        }
-        
-        [type="search"].as-textfield {
-        appearance: textfield;
-        outline-offset: -2px;
-        }
-
-        img {
-            display: inline-block;
-            vertical-align: middle;
-            cursor: pointer;
-            position: relative;
-            right: 35px;
-        }
-    }
+    margin-top: 75px;
 
     > .weather-info {
-        position: absolute;
-        top: 20%;
-        transform: (0, -20%);
 
         .condition {
             font-size: 1.6rem;
@@ -100,7 +86,6 @@ section.main-weather-info {
     }
 
     > .additional-info {
-        margin-top: 75px;
         display: flex;
         flex-direction: column;
         gap: 25px;
@@ -114,11 +99,13 @@ section.main-weather-info {
 }
 
 section.hourly {
-    margin-top: 15rem;
+    margin-top: 10rem;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 
     > div {
-        margin-bottom: 25px;
         display: flex;
         align-items: center;
         height: 40px;
@@ -169,5 +156,71 @@ section.hourly {
                 height: 75px;
             }
         }
+    }
+}
+
+/* Smallest screen */
+@media only screen and (max-width: 480px) {
+    body {
+        background-size: cover;
+    }
+
+    main {
+        padding: 0 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    form {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        input[type="search"], img {
+            flex: initial;
+        }
+    }
+
+    section.main-weather-info {
+        
+        > .weather-info {
+
+            .condition {
+                font-size: 1rem;
+            }
+    
+            .place {
+                font-size: 1.6rem;
+            }
+    
+            h1 {
+                margin: 0;
+                display: inline-block;
+                font-size: 3rem;
+            }
+    
+            h3 {
+                font-size: 1rem;
+            }
+        }    
+        
+        > .additional-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+    
+            > div {
+                flex: initial;
+                display: flex;
+                gap: 15px;
+            }
+            
+        }
+    }
+
+    section.hourly {
+        margin-top: 10rem; /* Adjust margin-top for smaller screens */
     }
 }

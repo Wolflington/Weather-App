@@ -21,17 +21,17 @@ export default async function getWeatherData(location) {
             feelslike_c: feelsTemp,
             condition: {text: weatherCondition},
             humidity: humidity,
-        } = weatherData.current
+        } = weatherData.current;
 
         const { //Access the location
             country: country,
             name: city,
             localtime: localTime
-        } = weatherData.location
+        } = weatherData.location;
 
         const { //Access the chance of raining for the day
             daily_chance_of_rain: willItRain
-        } = weatherData.forecast.forecastday[0].day
+        } = weatherData.forecast.forecastday[0].day;
 
         // Loop through the array to access every indeces
         let i = 0;
@@ -42,15 +42,15 @@ export default async function getWeatherData(location) {
                 temp_c: hourlyTemp,
                 condition: {icon: weatherIcon},
                 time: hour,
-            } = hourlyData[i]
+            } = hourlyData[i];
             displayHourly(hourlyTemp, weatherIcon, hour);
         }
 
-        displayInfo(temp, feelsTemp, weatherCondition, humidity, country, city, localTime, willItRain);
         if (location == undefined) {
             throw new Error ("Invalid location or location does not exist");
         }
 
+        displayInfo(temp, feelsTemp, weatherCondition, humidity, country, city, localTime, willItRain);
         console.log(weatherData);
         return weatherData;
     } 

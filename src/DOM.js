@@ -20,11 +20,13 @@ export function displayInfo(
 
         //Displays weather condition
         const condition = document.createElement("h2");
+        condition.classList.add("condition");
         condition.append(`${weatherCondition}`);
         mainInfo.append(condition);
 
         //Displays place (City, country format)
         const place = document.createElement("h2");
+        place.classList.add("place");
         place.append(`${city}, ${country}`);
         mainInfo.append(place);
 
