@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8" />
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+        <title>Weather360</title>
+    </head>
+    <body>
+        <main>
+            <form id = "search-form" >
+                <input type = "search" name = "search" id = "search"/>
+                <img id = "search-icon"/>
+            </form>
+            <section class = "main-weather-info">
+                <div class = "weather-info"></div>
+
+                <div class = "additional-info"></div>
+            </section>
+
+            <section class = "hourly">
+                <div>
+                    <span class = "prev">&lsaquo;</span>
+                    <button class = "dot active"></button>
+                    <button class = "dot"></button>
+                    <button class = "dot"></button>
+                    <button class = "dot"></button>
+                    <span class = "next">&rsaquo;</span>
+                </div>
+                <div class = "hourly-forecast"></div>
+            </section>
+
+        </main>
+        <script src = "main.js"></script>
+    </body>
+</html>
